@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://learnova-backend-qdzi.onrender.com/",
+  baseURL: "https://learnova-backend-qdzi.onrender.com/api",
   withCredentials: true
 });
 
