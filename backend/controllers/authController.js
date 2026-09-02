@@ -71,10 +71,12 @@ const login = async (req, res) => {
             }
         );
 
+        const isProduction = process.env.NODE_ENV === "production";
+
         res.cookie("token", token, {
             httpOnly: true,
-            secure: false,
-            sameSite: "lax",
+            secure: isProduction,
+            sameSite: isProduction ? "none" : "lax",
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
 
@@ -99,12 +101,19 @@ const login = async (req, res) => {
 
 // LOGOUT
 const logout = (req, res) => {
-    res.clearCookie("token");
+    const isProduction = process.env.NODE_ENV === "production";
+
+    res.clearCookie("token", {
+        httpOnly: true,
+        secure: isProduction,
+        sameSite: isProduction ? "none" : "lax"
+    });
 
     res.json({
         message: "Logout successful"
     });
 };
+
 
 // GET PROFILE
 const getProfile = async (req, res) => {
@@ -145,6 +154,7 @@ const updateProfile = async (req, res) => {
 
         if (name) user.name = name;
         if (bio !== undefined) user.bio = bio;
+
         if (profileImage !== undefined) {
             user.profileImage = profileImage;
         }
@@ -170,6 +180,7 @@ const updateProfile = async (req, res) => {
         });
     }
 };
+
 
 module.exports = {
     register,
