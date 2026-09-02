@@ -11,26 +11,9 @@ const app = express();
 connectDB();
 
 // CORS
-const allowedOrigins = [
-    "http://localhost:5173",
-    process.env.FRONTEND_URL
-].filter(Boolean);
-
 app.use(
     cors({
-        origin: function (origin, callback) {
-            // Allow requests without an origin
-            // (Postman, server-to-server requests, etc.)
-            if (!origin) {
-                return callback(null, true);
-            }
-
-            if (allowedOrigins.includes(origin)) {
-                return callback(null, true);
-            }
-
-            return callback(new Error("Not allowed by CORS"));
-        },
+        origin: "http://localhost:5173",
         credentials: true,
         methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         allowedHeaders: ["Content-Type", "Authorization"]
@@ -40,26 +23,27 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-// Test route
 app.get("/", (req, res) => {
     res.json({
         message: "Welcome to Learnova API"
     });
 });
 
-// Routes
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/courses", require("./routes/courseRoutes"));
 app.use("/api/modules", require("./routes/moduleRoutes"));
 app.use("/api/lessons", require("./routes/lessonRoutes"));
+
 app.use(
     "/api/assignments",
     require("./routes/assignmentRoutes")
 );
+
 app.use(
     "/api/submissions",
     require("./routes/submissionRoutes")
 );
+
 app.use(
     "/api/enrollments",
     require("./routes/enrollmentRoutes")
