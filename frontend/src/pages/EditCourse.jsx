@@ -237,7 +237,7 @@ function EditCourse() {
                 Beginner
               </option>
 
-              <option value="ntermediate">
+              <option value="Intermediate">
                 Intermediate
               </option>
 
