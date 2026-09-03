@@ -4584,3 +4584,58 @@ a {
   opacity: 0.7;
   cursor: not-allowed;
 }
+
+.add-lesson {
+  margin-top: 24px;
+  padding: 20px;
+  background: #faf9ff;
+  border: 1px solid #e8e1f8;
+  border-radius: 12px;
+
+  display: grid;
+  grid-template-columns: 1.2fr 1.5fr 1.2fr 1.2fr 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.add-lesson h4 {
+  grid-column: 1 / -1;
+  margin: 0 0 15px;
+  font-size: 17px;
+  color: #17172f;
+}
+
+.add-lesson input,
+.add-lesson textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 11px 13px;
+  border: 1px solid #ddd6f3;
+  border-radius: 8px;
+  background: white;
+  font-family: inherit;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.add-lesson input:focus,
+.add-lesson textarea:focus {
+  border-color: #6c3df5;
+  box-shadow: 0 0 0 3px rgba(108, 61, 245, 0.1);
+}
+
+.add-lesson button {
+  height: 44px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 8px;
+  background: #6c3df5;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.add-lesson button:hover {
+  background: #5830d6;
+}
